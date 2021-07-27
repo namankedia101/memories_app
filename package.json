@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",    "server": "nodemon index.js --ignore tests",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",  
+    "server": "nodemon index.js --ignore tests",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
