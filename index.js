@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.static("client/build"));
 
 app.use("/posts",postRoutes);
-app.get("/",(req,res)=>res.send("Hello to memories API"));
+//app.get("/",(req,res)=>res.send("Hello to memories API"));
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
