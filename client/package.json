@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://obscure-escarpment-66598.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.1",
