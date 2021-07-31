@@ -20,7 +20,7 @@ const initialState ={firstName:"", lastName:"", email:"", password:"", confirmPa
 
 const Auth = () => {
   const classes = useStyles();
-  const [isSignup, setIsSignup] = useState(false);
+  const [isSignup, setIsSignup] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [formData,setFormData] = useState(null);
   const dispatch =useDispatch();
