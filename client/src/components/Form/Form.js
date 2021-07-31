@@ -10,7 +10,7 @@ const Form = ({currentId, setCurrentId}) => {
     title:"", message:"", tags:"", selectedFile:""
   });
 
-  const post = useSelector((state)=>currentId ? state.posts.find((p)=>p._id===currentId):null);
+  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
 
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -21,6 +21,13 @@ const Form = ({currentId, setCurrentId}) => {
       setPostData(post);
     }
   },[post]);
+
+  
+
+  const clear=()=>{
+    setCurrentId(null);
+    setPostData({ title: '', message: '', tags: '', selectedFile: '' });
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,11 +49,6 @@ const Form = ({currentId, setCurrentId}) => {
         </Typography>
       </Paper>
     );
-  }
-
-  const clear=()=>{
-    setCurrentId(null);
-    setPostData({ title: '', message: '', tags: '', selectedFile: '' });
   }
 
   return (
