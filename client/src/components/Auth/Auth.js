@@ -7,6 +7,7 @@ import {
   Grid,
   Container,
 } from "@material-ui/core";
+import { AUTH } from "../../constants/actionTypes";
 import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
@@ -18,7 +19,7 @@ import {signup, signin} from "../../actions/auth";
 
 const initialState ={firstName:"", lastName:"", email:"", password:"", confirmPassword:""};
 
-const Auth = () => {
+const SignUp = () => {
   const classes = useStyles();
   const [isSignup, setIsSignup] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
@@ -54,7 +55,7 @@ const Auth = () => {
       const token = res?.tokenId;
 
       try {
-          dispatch({type:"AUTH", data:{result,token}});
+          dispatch({type:AUTH, data:{result,token}});
           history.push("/");
       } catch (error) {
           console.log(error);
@@ -158,4 +159,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default SignUp;

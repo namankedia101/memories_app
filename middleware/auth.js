@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { decode } from "jsonwebtoken";
+
+const secret = 'test';
 
 //use: if user wants to like a post
 //click like button -> middleware will verify user, then move to next() -> like controller..
@@ -10,26 +11,27 @@ import { decode } from "jsonwebtoken";
 // *Since we'll add middleware just before the value of controllers in the routes, controllers will 
 // also have access to the values of middleware. example they can have access to req.userId which is in middleware*
 
-const auth = async (req,res,next)=>{
-    try {
-        const token = req.headers.authorization.split("")[1];
-        const isCustomAuth = token.length < 500;
+const auth = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const isCustomAuth = token.length < 500;
 
-        let decodedData;
+    let decodedData;
 
-        if(token && isCustomAuth){
-            decodedData= jwt.verify(token,"test");
-            req.userId = decodedData?.userid;
-        }else{
-            decodedData= jwt.decode(token);
-            req.userId = decodedData?.sub;
-        }
+    if (token && isCustomAuth) {      
+      decodedData = jwt.verify(token, secret);
 
-        next();
+      req.userId = decodedData?.id;
+    } else {
+      decodedData = jwt.decode(token);
 
-    } catch (error) {
-        console.log(error);
-    }
-}
+      req.userId = decodedData?.sub;
+    }    
+
+    next();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default auth;
