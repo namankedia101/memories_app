@@ -1,5 +1,6 @@
 import express from "express";
-import { getPosts, createPost, updatePost, deletePost, likePost } from "../controllers/posts.js";
+import { commentPost } from "../client/src/actions/posts.js";
+import { getPosts, getPost, getPostsBySearch, createPost, updatePost, deletePost, likePost, commentPost } from "../controllers/posts.js";
 import auth from "../middleware/auth.js";
 
 const router = express.Router();
@@ -8,7 +9,11 @@ const router = express.Router();
 // also have access to the values of middleware. example they can have access to req.userId which is in middleware*
 
 router.get("/", getPosts);
+router.get("/search", getPostsBySearch);
+router.get("/:id", getPost);
+
 router.post("/",auth, createPost);
+router.post("/:id/commentPost",auth, commentPost);
 router.patch("/:id",auth, updatePost);
 router.delete("/:id",auth, deletePost);
 router.patch("/:id/likePost",auth, likePost)
