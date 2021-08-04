@@ -1,5 +1,4 @@
 import express from "express";
-import { commentPost } from "../client/src/actions/posts.js";
 import { getPosts, getPost, getPostsBySearch, createPost, updatePost, deletePost, likePost, commentPost } from "../controllers/posts.js";
 import auth from "../middleware/auth.js";
 
