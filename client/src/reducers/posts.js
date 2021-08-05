@@ -36,8 +36,8 @@ export default (state ={isLoading:true, posts:[]}, action) => {
             return action.payload; //change the post that just received a comment
           }
           return post; //return all the other post normally
-        })
-      }  
+        }),
+      };  
 
     case DELETE:
       return {state, posts:state.posts.filter((post)=>post._id !== action.payload)};

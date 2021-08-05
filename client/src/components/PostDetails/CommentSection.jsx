@@ -47,6 +47,7 @@ const CommentSection = ({post})=>{
                     value={comment}
                     onChange={(e)=>setComment(e.target.value)}
                 />
+                <br />
                 <Button style={{marginTop:"10px"}} color="primary" variant="contained" fullWidth disabled={!comment} onClick={handleComment}>
                     Comment
                 </Button>
