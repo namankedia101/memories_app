@@ -1,4 +1,4 @@
-import react , {useState, useRef} from "react";
+import React , {useState, useRef} from "react";
 import {Typography, TextField, Button} from "@material-ui/core";
 import {useDispatch} from "react-redux";
 import {commentPost} from "../../actions/posts";
@@ -13,13 +13,14 @@ const CommentSection = ({post})=>{
     const [comment,setComment] = useState("");
     const user = JSON.parse(localStorage.getItem("profile"));
 
-    const handleClick = async()=>{
-       const finalComment = `${user.result.name}:${comment}`;
-       const newComments=await dispatch(commentPost(finalComment,post));
-       setComments(newComments);
-       setComment("");
-       commentsRef.current.scrollIntoView({behaviour:"smooth"});
-    }
+    const handleComment = async () => {
+        const newComments = await dispatch(commentPost(`${user?.result?.name}: ${comment}`, post._id));
+    
+        setComment('');
+        setComments(newComments);
+    
+        commentsRef.current.scrollIntoView({ behavior: 'smooth' });
+      };
 
     return(
     <div>
@@ -46,7 +47,7 @@ const CommentSection = ({post})=>{
                     value={comment}
                     onChange={(e)=>setComment(e.target.value)}
                 />
-                <Button style={{marginTop:"10px"}} color="primary" variant="contained" fullWidth disabled={!comment} onClick={handleClick}>
+                <Button style={{marginTop:"10px"}} color="primary" variant="contained" fullWidth disabled={!comment} onClick={handleComment}>
                     Comment
                 </Button>
             </div>)}
