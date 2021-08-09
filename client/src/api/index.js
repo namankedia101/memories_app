@@ -11,14 +11,14 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPost = (id) => API.get(`/api/posts/${id}`);
-export const fetchPosts = (page) => API.get(`/api/posts?page=${page}`);
-export const fetchPostsBySearch = (searchQuery) => API.get(`/api/posts/search?searchQuery=${searchQuery.search || "none"}&tags=${searchQuery.tags}`);
-export const createPost = (newPost) => API.post('/api/posts', newPost);
-export const likePost = (id) => API.patch(`/api/posts/${id}/likePost`);
-export const comment = (value,id) => API.post(`/api/posts/${id}/commentPost`,{value});
-export const updatePost = (id, updatedPost) => API.patch(`/api/posts/${id}`, updatedPost);
-export const deletePost = (id) => API.delete(`/api/posts/${id}`);
+export const fetchPost = (id) => API.get(`/posts/api/${id}`);
+export const fetchPosts = (page) => API.get(`/posts?page=${page}/api`);
+export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/api/search?searchQuery=${searchQuery.search || "none"}&tags=${searchQuery.tags}`);
+export const createPost = (newPost) => API.post('/posts/api', newPost);
+export const likePost = (id) => API.patch(`/posts/api/${id}/likePost`);
+export const comment = (value,id) => API.post(`/posts/api/${id}/commentPost`,{value});
+export const updatePost = (id, updatedPost) => API.patch(`/posts/api/${id}`, updatedPost);
+export const deletePost = (id) => API.delete(`/posts/api/${id}`);
 
-export const signIn = (formData)=>API.post("/api/user/signin", formData);
-export const signUp = (formData)=>API.post("/api/user/signup", formData);
+export const signIn = (formData)=>API.post("/user/api/signin", formData);
+export const signUp = (formData)=>API.post("/user/api/signup", formData);
