@@ -24,7 +24,7 @@ app.get("/api",(req,res)=>res.send("Hello to memories API"));
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 5000;
