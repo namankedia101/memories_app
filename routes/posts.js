@@ -7,14 +7,14 @@ const router = express.Router();
 // *Since we'll add middleware just before the value of controllers in the routes, controllers will 
 // also have access to the values of middleware. example they can have access to req.userId which is in middleware*
 
-router.get("/", getPosts);
-router.get("/search", getPostsBySearch);
-router.get("/:id", getPost);
+router.get("/api", getPosts);
+router.get("/api/search", getPostsBySearch);
+router.get("/api/:id", getPost);
 
-router.post("/",auth, createPost);
-router.post("/:id/commentPost", commentPost);
-router.patch("/:id",auth, updatePost);
-router.delete("/:id",auth, deletePost);
-router.patch("/:id/likePost",auth, likePost)
+router.post("/api",auth, createPost);
+router.post("/api/:id/commentPost", commentPost);
+router.patch("/api/:id",auth, updatePost);
+router.delete("/api/:id",auth, deletePost);
+router.patch("/api/:id/likePost",auth, likePost)
 
 export default router; 
