@@ -11,10 +11,10 @@ import userRoutes from "./routes/user.js";
 const app = express();
 dotenv.config();
 
-app.use(bodyParser.json({ extended: true, limit: "30mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
+app.use(express.json({ extended: true, limit: "30mb" }));
+app.use(express.urlencoded({ extended: true, limit: "30mb" }));
+
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
