@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import path from "path";
+const path = require('path');
 
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/user.js";
