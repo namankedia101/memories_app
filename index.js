@@ -17,12 +17,18 @@ app.use(express.urlencoded({ extended: true, limit: "30mb" }));
 app.use(cors());
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
   );
-  next();
+  if ("OPTIONS" == req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
 });
 
 // Have Node serve the files for our built React app
@@ -33,9 +39,12 @@ app.use("/user",userRoutes);
 app.get("/api",(req,res)=>res.send("Hello to memories API"));
 
 // All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
